@@ -1,0 +1,41 @@
+
+#ssh-copy-id 192.168.10.39
+
+#remote_user: root
+#became: True
+#previldge baaane ke liye kii root hai agar toh powers de dena 
+
+
+#to check docs
+#ansible-doc all
+#ansible-doc user
+#ansible-doc -l | grep user------------ # BY WHICH IT WILL GREP ALL USER MODULES
+#ansible-doc -s user---------------# -s for summary but it does not tell about examples
+
+
+
+---
+ - hosts: all
+   tasks:
+    - name: to ping all IPs
+      ping:			# it is to check and ping
+      user:                     #here user is a module
+	name: johnd
+	uid: 1226
+    - name: create and remove user
+      copy:
+	src: /etc/yum.repos.d/
+	dest: /
+    - name: installing httpd
+      yum:
+	name: httpd
+	state: present
+
+
+
+#to run a playbook run
+#ansible-playbook play1.yml --syntax-check
+#ansible-playbook play1.yml
+
+
+
